@@ -2,15 +2,14 @@ import logging
 import os
 from functools import lru_cache
 
-from pydantic import BaseSettings
-
+from pydantic import AnyUrl, BaseSettings
 
 log = logging.getLogger("uvicorn")
 
-
 class Settings(BaseSettings):
-    environment: str = os.getenv("ENVIRONMENT", "dev")
-    testing: bool = os.getenv("TESTING", 0)
+    environment: str = os.environ.get("ENVIRONMENT", "dev")
+    testing: bool = os.environ.get("TESTING", 0)
+    database_url: AnyUrl = os.environ.get("DATABASE_URL")
 
 
 @lru_cache()
