@@ -6,6 +6,7 @@ from pydantic import AnyUrl, BaseSettings
 
 log = logging.getLogger("uvicorn")
 
+
 class Settings(BaseSettings):
     environment: str = os.environ.get("ENVIRONMENT", "dev")
     testing: bool = os.environ.get("TESTING", 0)
